@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Phone, Mail, Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import emailjs from "emailjs-com";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -23,23 +24,45 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulación de envío
-    setTimeout(() => {
-      toast({
-        title: "Mensaje enviado",
-        description: "Nos pondremos en contacto contigo pronto.",
-        variant: "default",
+    // EmailJS configuration
+    const serviceId = "default_service"; // You'll need to create this in EmailJS
+    const templateId = "template_contact"; // You'll need to create this in EmailJS
+    const userId = "YOUR_USER_ID"; // You'll need to sign up and get this from EmailJS
+    
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      service: formData.service,
+      message: formData.message,
+      to_email: "flowurban2k@gmail.com"
+    };
+    
+    emailjs.send(serviceId, templateId, templateParams, userId)
+      .then(() => {
+        toast({
+          title: "Mensaje enviado",
+          description: "Nos pondremos en contacto contigo pronto.",
+          variant: "default",
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          service: "",
+          message: ""
+        });
+      })
+      .catch((error) => {
+        console.error("Error al enviar el email:", error);
+        toast({
+          title: "Error al enviar",
+          description: "Hubo un problema al enviar tu mensaje. Por favor, intenta de nuevo.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      
-      setFormData({
-        name: "",
-        email: "",
-        service: "",
-        message: ""
-      });
-      
-      setIsSubmitting(false);
-    }, 1500);
   };
   
   return (

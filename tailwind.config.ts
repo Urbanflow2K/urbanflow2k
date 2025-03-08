@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				urban: {
+					black: "#121212",
+					darkgray: "#1E1E1E",
+					gray: "#2A2A2A",
+					accent: "#8B5CF6",
+					light: "#F4F4F5",
+					white: "#FFFFFF",
 				}
 			},
 			borderRadius: {
@@ -70,25 +79,63 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				pulse: {
+					'0%, 100%': { opacity: 1 },
+					'50%': { opacity: 0.8 }
+				},
+				fadeIn: {
+					from: { opacity: 0, transform: 'translateY(20px)' },
+					to: { opacity: 1, transform: 'translateY(0)' }
+				},
+				wave: {
+					'0%': { transform: 'rotate(0deg)' },
+					'10%': { transform: 'rotate(14deg)' },
+					'20%': { transform: 'rotate(-8deg)' },
+					'30%': { transform: 'rotate(14deg)' },
+					'40%': { transform: 'rotate(-4deg)' },
+					'50%': { transform: 'rotate(10deg)' },
+					'60%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(0deg)' }
+				},
+				slideIn: {
+					from: { transform: 'translateX(-100%)', opacity: 0 },
+					to: { transform: 'translateX(0)', opacity: 1 }
+				},
+				slideUp: {
+					from: { transform: 'translateY(100%)', opacity: 0 },
+					to: { transform: 'translateY(0)', opacity: 1 }
+				},
+				slideRight: {
+					from: { transform: 'translateX(0)' },
+					to: { transform: 'translateX(100%)' }
+				},
+				scaleIn: {
+					from: { transform: 'scale(0.95)', opacity: 0 },
+					to: { transform: 'scale(1)', opacity: 1 }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				float: 'float 6s ease-in-out infinite',
+				pulse: 'pulse 3s ease-in-out infinite',
+				fadeIn: 'fadeIn 0.8s ease-out',
+				wave: 'wave 1.5s ease-in-out',
+				slideIn: 'slideIn 0.6s ease-out',
+				slideUp: 'slideUp 0.6s ease-out',
+				slideRight: 'slideRight 0.4s ease-out',
+				scaleIn: 'scaleIn 0.4s ease-out'
 			}
 		}
 	},

@@ -87,8 +87,7 @@ const ContactSection = () => {
             
             <div className="mt-12">
               <h4 className="text-xl font-semibold mb-4">Horario de Atención</h4>
-              <p className="text-urban-light/80 mb-2">Lunes - Viernes: 9:00 - 20:00</p>
-              <p className="text-urban-light/80">Fines de semana: 10:00 - 18:00</p>
+              <p className="text-urban-light/80">Lunes - Viernes: 9:00 - 20:00</p>
             </div>
           </div>
         </div>

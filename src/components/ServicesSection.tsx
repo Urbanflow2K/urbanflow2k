@@ -51,7 +51,7 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
             : "bg-transparent border border-urban-accent text-urban-accent"
         )}
       >
-        Solicitar Servicio
+        Comprar
       </Link>
     </div>
   );
@@ -114,7 +114,7 @@ const ServicesSection = () => {
         
         <ServiceCard 
           icon={<PlayCircle size={48} />}
-          title="Promoción en Playlist"
+          title="Incluye tu tema en nuestra playlist"
           description="Inclusión en playlist con más de 1000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
           price="5"
           isPopular={true}

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Phone, Mail, Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
@@ -33,7 +34,8 @@ const ContactSection = () => {
       from_email: formData.email,
       service: formData.service,
       message: formData.message,
-      to_email: "realmusicprod@hotmail.com"
+      to_email: "flowurban2k@gmail.com", // Updated email address
+      reply_to: formData.email // This ensures you can directly reply to the sender
     };
     
     emailjs.send(serviceId, templateId, templateParams, userId)
@@ -43,6 +45,21 @@ const ContactSection = () => {
           description: "Nos pondremos en contacto contigo pronto.",
           variant: "default",
         });
+        
+        // Send auto-reply to the client
+        const autoReplyParams = {
+          to_email: formData.email,
+          to_name: formData.name,
+          from_name: "Flow Urban",
+          message: "Hemos recibido tu mensaje. Puedes contactarnos por Whatsapp para más información: 622 17 43 67",
+          reply_to: "flowurban2k@gmail.com"
+        };
+        
+        // Send the auto-reply email
+        emailjs.send(serviceId, "template_autoreply", autoReplyParams, userId)
+          .catch(error => {
+            console.error("Error sending auto-reply:", error);
+          });
         
         setFormData({
           name: "",
@@ -65,12 +82,22 @@ const ContactSection = () => {
   };
   
   return (
-    <section className="section relative" id="contacto">
+    <section className="section relative" id="contacto" 
+      style={{
+        backgroundImage: 'url("/studio-background.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        position: 'relative'
+      }}>
+      {/* Overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-urban-black/70 backdrop-blur-sm"></div>
+      
       {/* Elementos decorativos */}
       <div className="absolute top-1/3 right-10 w-96 h-96 rounded-full bg-urban-accent/5 blur-[120px] -z-10" />
       <div className="absolute bottom-1/3 left-20 w-72 h-72 rounded-full bg-blue-500/5 blur-[100px] -z-10" />
       
-      <div className="text-center mb-16">
+      <div className="relative z-10 text-center mb-16">
         <span className="inline-block px-4 py-2 rounded-full text-sm bg-urban-accent/10 text-urban-accent font-medium mb-4">
           Contacto
         </span>
@@ -80,7 +107,7 @@ const ContactSection = () => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-1">
           <div className="glass-card p-8 h-full">
             <h3 className="text-2xl font-bold mb-6">Información de Contacto</h3>

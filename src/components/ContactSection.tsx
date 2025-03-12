@@ -26,7 +26,7 @@ const ContactSection = () => {
     // EmailJS configuration
     const serviceId = "service_35mqztq";
     const templateId = "template_bbc0zd8";
-    const userId = "YOUR_USER_ID"; // You'll need to sign up and get this from EmailJS
+    const userId = "QnoJ45FZosLNqDGSZ"; // Updated EmailJS User ID
     
     const templateParams = {
       from_name: formData.name,

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Phone, Mail, Send } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
@@ -34,7 +33,7 @@ const ContactSection = () => {
       from_email: formData.email,
       service: formData.service,
       message: formData.message,
-      to_email: "flowurban2k@gmail.com"
+      to_email: "realmusicprod@hotmail.com"
     };
     
     emailjs.send(serviceId, templateId, templateParams, userId)

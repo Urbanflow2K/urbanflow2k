@@ -35,7 +35,8 @@ const ContactSection = () => {
       service: formData.service,
       message: formData.message,
       to_email: "flowurban2k@gmail.com", // Updated email address
-      reply_to: formData.email // This ensures you can directly reply to the sender
+      reply_to: formData.email, // This ensures you can directly reply to the sender
+      user_email: formData.email // Adding explicit user_email for template variable
     };
     
     emailjs.send(serviceId, templateId, templateParams, userId)
@@ -52,7 +53,8 @@ const ContactSection = () => {
           to_name: formData.name,
           from_name: "Flow Urban",
           message: "Hemos recibido tu mensaje. Puedes contactarnos por Whatsapp para más información: 622 17 43 67",
-          reply_to: "flowurban2k@gmail.com"
+          reply_to: "flowurban2k@gmail.com",
+          user_email: formData.email // Adding explicit user_email for template variable
         };
         
         // Send the auto-reply email

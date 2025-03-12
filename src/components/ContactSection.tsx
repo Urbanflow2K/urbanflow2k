@@ -24,8 +24,8 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     // EmailJS configuration
-    const serviceId = "default_service"; // You'll need to create this in EmailJS
-    const templateId = "template_contact"; // You'll need to create this in EmailJS
+    const serviceId = "service_35mqztq";
+    const templateId = "template_bbc0zd8";
     const userId = "YOUR_USER_ID"; // You'll need to sign up and get this from EmailJS
     
     const templateParams = {

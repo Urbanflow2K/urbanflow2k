@@ -86,8 +86,8 @@ const ServicesSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <ServiceCard 
           icon={<Music4 size={48} />}
-          title="Instrumental Personalizada"
-          description="Creamos beats y melodías únicas adaptadas a tu estilo. Producción completa desde cero con revisiones incluidas."
+          title="Instrumental"
+          description="¿Buscas una instrumental única para tu tema de reggaetón, trap, bachata, pop, y más? ¡Lo creamos para ti! Cuéntanos tu idea, estilo y necesidades, y nosotros nos encargamos de producir una base musical completamente original."
           price="100"
           isPopular={true}
         />
@@ -95,7 +95,7 @@ const ServicesSection = () => {
         <ServiceCard 
           icon={<Headphones size={48} />}
           title="Mezcla y Master"
-          description="Procesamiento profesional de tus pistas para un sonido limpio, balanceado y listo para las plataformas digitales."
+          description="¿Quieres que tu tema suene impecable? Ofrecemos servicios de mezcla y masterización profesional para que tus voces e instrumentales suenen en su máximo potencial. Nos encargamos de ajustar cada elemento para lograr un sonido balanceado y de calidad profesional."
           price="100"
         />
         

@@ -13,7 +13,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center space-x-2 mb-6">
               <Music className="h-8 w-8 text-urban-accent" />
               <span className="text-2xl font-bold tracking-tight text-urban-white">
-                Urban<span className="text-urban-accent">flow</span>
+                Urban<span className="text-urban-accent">Flow2K</span>
               </span>
             </Link>
             
@@ -138,7 +138,7 @@ const Footer = () => {
         
         <div className="mt-12 pt-8 border-t border-white/10 text-center">
           <p className="text-urban-light/60">
-            © {currentYear} Urbanflow. Todos los derechos reservados.
+            © {currentYear} UrbanFlow2K. Todos los derechos reservados.
           </p>
         </div>
       </div>

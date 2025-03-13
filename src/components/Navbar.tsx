@@ -40,7 +40,7 @@ const Navbar = () => {
           >
             <Music className="h-8 w-8 text-urban-accent" />
             <span className="text-2xl font-bold tracking-tight text-urban-white">
-              Urban<span className="text-urban-accent">flow</span>
+              Urban<span className="text-urban-accent">Flow2K</span>
             </span>
           </Link>
 

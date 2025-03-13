@@ -67,7 +67,7 @@ const HeroSection = () => {
           </h1>
           
           <p className={cn("text-xl text-urban-light/90 max-w-2xl mx-auto", animationClasses(300))}>
-            En Urbanflow transformamos tus ideas musicales en producciones profesionales. 
+            En UrbanFlow2K transformamos tus ideas musicales en producciones profesionales. 
             Desde instrumentales personalizadas hasta presencia en Spotify.
           </p>
           
@@ -81,19 +81,19 @@ const HeroSection = () => {
           </div>
           
           <div className={cn("mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8", animationClasses(500))}>
-            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition">
+            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition bg-gradient-to-br from-purple-500/30 to-blue-500/30 border border-white/20">
               <Music2 className="w-10 h-10 text-purple-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold mb-2">Instrumentales Únicas</h3>
               <p className="text-urban-light/80">Creadas específicamente para tu estilo y visión artística</p>
             </div>
             
-            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition">
+            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition bg-gradient-to-br from-blue-500/30 to-indigo-500/30 border border-white/20">
               <Headphones className="w-10 h-10 text-purple-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold mb-2">Mezcla Profesional</h3>
               <p className="text-urban-light/80">Sonido claro, balanceado y competitivo para la industria</p>
             </div>
             
-            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition">
+            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition bg-gradient-to-br from-indigo-500/30 to-purple-500/30 border border-white/20">
               <PlayCircle className="w-10 h-10 text-purple-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold mb-2">Presencia Digital</h3>
               <p className="text-urban-light/80">Potencia tu música en plataformas como Spotify</p>

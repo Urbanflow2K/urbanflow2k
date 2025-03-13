@@ -39,20 +39,20 @@ const Navbar = () => {
             className="flex items-center space-x-2 smooth-transition hover:scale-105"
           >
             <Music className="h-8 w-8 text-urban-accent" />
-            <span className="text-2xl font-bold tracking-tight text-urban-black">
-              Urban<span className="text-urban-accent">Flow2k</span>
+            <span className="text-2xl font-bold tracking-tight text-urban-white">
+              Urban<span className="text-urban-accent">flow</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="nav-link text-urban-black opacity-90 hover:opacity-100 font-medium smooth-transition">
+            <Link to="/" className="nav-link text-urban-white opacity-90 hover:opacity-100 font-medium smooth-transition">
               Inicio
             </Link>
-            <Link to="/servicios" className="nav-link text-urban-black opacity-90 hover:opacity-100 font-medium smooth-transition">
+            <Link to="/servicios" className="nav-link text-urban-white opacity-90 hover:opacity-100 font-medium smooth-transition">
               Servicios
             </Link>
-            <Link to="/sobre-nosotros" className="nav-link text-urban-black opacity-90 hover:opacity-100 font-medium smooth-transition">
+            <Link to="/sobre-nosotros" className="nav-link text-urban-white opacity-90 hover:opacity-100 font-medium smooth-transition">
               Sobre Nosotros
             </Link>
             <Link to="/contacto" className="btn-primary">
@@ -63,7 +63,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
-              className="text-urban-black hover:text-urban-accent smooth-transition p-2"
+              className="text-white hover:text-urban-accent smooth-transition p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -78,21 +78,21 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
             <Link
               to="/"
-              className="block px-3 py-4 rounded-md text-base font-medium text-center text-urban-black hover:bg-urban-gray/10 smooth-transition"
+              className="block px-3 py-4 rounded-md text-base font-medium text-center text-urban-white hover:bg-urban-gray smooth-transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Inicio
             </Link>
             <Link
               to="/servicios"
-              className="block px-3 py-4 rounded-md text-base font-medium text-center text-urban-black hover:bg-urban-gray/10 smooth-transition"
+              className="block px-3 py-4 rounded-md text-base font-medium text-center text-urban-white hover:bg-urban-gray smooth-transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Servicios
             </Link>
             <Link
               to="/sobre-nosotros"
-              className="block px-3 py-4 rounded-md text-base font-medium text-center text-urban-black hover:bg-urban-gray/10 smooth-transition"
+              className="block px-3 py-4 rounded-md text-base font-medium text-center text-urban-white hover:bg-urban-gray smooth-transition"
               onClick={() => setIsMenuOpen(false)}
             >
               Sobre Nosotros

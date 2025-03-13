@@ -86,14 +86,14 @@ const ContactSection = () => {
   return (
     <section className="section relative" id="contacto" 
       style={{
-        backgroundImage: 'url("/studio-background.jpg")',
+        backgroundImage: 'url("/lovable-uploads/4376b5fe-449f-414f-bc9d-1d54d700a2c3.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
         position: 'relative'
       }}>
       {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-urban-black/70 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-urban-black/80 backdrop-blur-sm"></div>
       
       {/* Elementos decorativos */}
       <div className="absolute top-1/3 right-10 w-96 h-96 rounded-full bg-urban-accent/5 blur-[120px] -z-10" />

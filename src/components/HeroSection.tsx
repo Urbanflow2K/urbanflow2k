@@ -26,7 +26,18 @@ const HeroSection = () => {
     );
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-urban-black to-urban-darkgray">
+    <div 
+      className="relative min-h-screen overflow-hidden" 
+      style={{
+        backgroundImage: 'url("/lovable-uploads/4376b5fe-449f-414f-bc9d-1d54d700a2c3.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      {/* Overlay para mejorar legibilidad del texto */}
+      <div className="absolute inset-0 bg-urban-black/60 backdrop-blur-sm"></div>
+      
       {/* Partículas musicales animadas */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 animate-float">

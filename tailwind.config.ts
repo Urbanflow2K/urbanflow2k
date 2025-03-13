@@ -67,7 +67,7 @@ export default {
 					black: "#121212",
 					darkgray: "#1E1E1E",
 					gray: "#2A2A2A",
-					accent: "#8B5CF6",
+					accent: "#9B87F5",
 					light: "#F4F4F5",
 					white: "#FFFFFF",
 				}

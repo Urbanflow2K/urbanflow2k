@@ -7,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 
 const Contacto = () => {
   return (
-    <div className="bg-urban-black text-urban-white min-h-screen">
+    <div className="bg-urban-black text-urban-white min-h-screen font-elegant">
       <Navbar />
       
       {/* Header de Página */}

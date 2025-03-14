@@ -36,16 +36,16 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center space-x-2 smooth-transition hover:scale-105"
+            className="flex items-center space-x-2 smooth-transition hover:scale-105 font-elegant"
           >
             <Music className="h-8 w-8 text-urban-accent" />
             <span className="text-2xl font-bold tracking-tight text-urban-white">
-              Urban<span className="text-urban-accent">flow</span>
+              Urban<span className="text-urban-accent">Flow2k</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 font-elegant">
             <Link to="/" className="nav-link text-urban-white opacity-90 hover:opacity-100 font-medium smooth-transition">
               Inicio
             </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden glass-card m-4 animate-scaleIn">
+        <div className="md:hidden glass-card m-4 animate-scaleIn font-elegant">
           <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
             <Link
               to="/"

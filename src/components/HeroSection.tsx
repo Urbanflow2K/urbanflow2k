@@ -27,7 +27,7 @@ const HeroSection = () => {
 
   return (
     <div 
-      className="relative min-h-screen overflow-hidden" 
+      className="relative min-h-screen overflow-hidden font-elegant" 
       style={{
         backgroundImage: 'url("/lovable-uploads/4376b5fe-449f-414f-bc9d-1d54d700a2c3.png")',
         backgroundSize: 'cover',
@@ -67,7 +67,7 @@ const HeroSection = () => {
           </h1>
           
           <p className={cn("text-xl text-urban-light/90 max-w-2xl mx-auto", animationClasses(300))}>
-            En Urbanflow transformamos tus ideas musicales en producciones profesionales. 
+            En UrbanFlow2k transformamos tus ideas musicales en producciones profesionales. 
             Desde instrumentales personalizadas hasta presencia en Spotify.
           </p>
           
@@ -81,19 +81,19 @@ const HeroSection = () => {
           </div>
           
           <div className={cn("mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8", animationClasses(500))}>
-            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition">
+            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition border border-purple-500/30 bg-gradient-to-br from-urban-gray to-urban-darkgray/80">
               <Music2 className="w-10 h-10 text-purple-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold mb-2">Instrumentales Únicas</h3>
               <p className="text-urban-light/80">Creadas específicamente para tu estilo y visión artística</p>
             </div>
             
-            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition">
+            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition border border-purple-500/30 bg-gradient-to-br from-urban-gray to-urban-darkgray/80">
               <Headphones className="w-10 h-10 text-purple-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold mb-2">Mezcla Profesional</h3>
               <p className="text-urban-light/80">Sonido claro, balanceado y competitivo para la industria</p>
             </div>
             
-            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition">
+            <div className="glass-card p-6 hover:translate-y-[-5px] smooth-transition border border-purple-500/30 bg-gradient-to-br from-urban-gray to-urban-darkgray/80">
               <PlayCircle className="w-10 h-10 text-purple-400 mb-4 mx-auto" />
               <h3 className="text-xl font-semibold mb-2">Presencia Digital</h3>
               <p className="text-urban-light/80">Potencia tu música en plataformas como Spotify</p>

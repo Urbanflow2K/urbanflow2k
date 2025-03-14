@@ -9,7 +9,7 @@ import { ChevronRight } from "lucide-react";
 
 const Servicios = () => {
   return (
-    <div className="bg-urban-black text-urban-white min-h-screen">
+    <div className="bg-urban-black text-urban-white min-h-screen font-elegant">
       <Navbar />
       
       {/* Header de Página */}
@@ -21,11 +21,8 @@ const Servicios = () => {
               Nuestros Servicios
             </span>
             <h1 className="heading-lg mb-6">
-              Servicios de <span className="text-gradient">producción musical</span> premium
+              Nuestros servicios
             </h1>
-            <p className="text-xl text-urban-light/80 max-w-2xl mx-auto">
-              Ofrecemos soluciones completas para artistas que buscan destacar en la industria musical
-            </p>
           </ScrollReveal>
           
           <div className="flex items-center justify-center text-urban-light/60 mt-8">
@@ -39,7 +36,7 @@ const Servicios = () => {
       <ServicesSection />
       
       {/* Sección de cómo trabajamos */}
-      <section className="section bg-urban-darkgray relative overflow-hidden">
+      <section className="section bg-urban-darkgray relative overflow-hidden font-elegant">
         <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-urban-accent/5 blur-[120px] -z-10" />
         
         <ScrollReveal>

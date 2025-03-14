@@ -82,18 +82,19 @@ const ServicesSection = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <ServiceCard 
+          icon={<PlayCircle size={36} />}
+          title="Campaña Playlist 15K"
+          description="Inclusión en playlist con más de 1000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
+          price="5"
+          isPopular={true}
+        />
+        
+        <ServiceCard 
           icon={<Music4 size={36} />}
           title="Instrumental"
           description="Creamos beats y melodías únicas adaptadas a tu estilo. Dinos cómo lo quieres y lo hacemos realidad desde cero."
           price="100"
           isPopular={true}
-        />
-        
-        <ServiceCard 
-          icon={<Headphones size={36} />}
-          title="Mezcla y Master"
-          description="Mezcla y master de voces según tu visión."
-          price="100"
         />
         
         <ServiceCard 
@@ -105,10 +106,10 @@ const ServicesSection = () => {
         />
         
         <ServiceCard 
-          icon={<Image size={36} />}
-          title="Portada para Spotify"
-          description="Diseño de artwork personalizado con estética profesional para destacar tu música en todas las plataformas digitales."
-          price="20"
+          icon={<Headphones size={36} />}
+          title="Mezcla y Master"
+          description="Mezcla y master de voces según tu visión."
+          price="100"
         />
         
         <ServiceCard 
@@ -119,11 +120,10 @@ const ServicesSection = () => {
         />
         
         <ServiceCard 
-          icon={<PlayCircle size={36} />}
-          title="Incluye tu tema en nuestra playlist"
-          description="Inclusión en playlist con más de 1000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
-          price="5"
-          isPopular={true}
+          icon={<Image size={36} />}
+          title="Portada para Spotify"
+          description="Diseño de artwork personalizado con estética profesional para destacar tu música en todas las plataformas digitales."
+          price="20"
         />
       </div>
       

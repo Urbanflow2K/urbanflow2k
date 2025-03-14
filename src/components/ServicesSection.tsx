@@ -18,7 +18,7 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
   return (
     <div 
       className={cn(
-        "glass-card p-8 relative overflow-hidden group min-h-[420px]",
+        "glass-card p-8 relative overflow-hidden group",
         isPopular ? "border-purple-500/50" : "border-white/10",
         "smooth-transition hover:translate-y-[-10px]"
       )}
@@ -40,13 +40,11 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
         </div>
       )}
       
-      <div className="mb-4 text-purple-400 flex justify-center">
-        {React.cloneElement(icon, { size: 36 })}
-      </div>
+      <div className="mb-6 text-purple-400">{icon}</div>
       
-      <h3 className="text-2xl font-bold mb-4 text-center">{title}</h3>
+      <h3 className="text-2xl font-bold mb-4">{title}</h3>
       
-      <p className="text-urban-light/80 mb-6 h-28">{description}</p>
+      <p className="text-urban-light/80 mb-6 h-24">{description}</p>
       
       <div className="flex items-baseline mb-6">
         <span className="text-3xl font-bold">{price}</span>
@@ -79,7 +77,7 @@ const ServicesSection = () => {
         <span className="inline-block px-4 py-2 rounded-full text-sm bg-purple-500/10 text-purple-400 font-medium mb-4">
           Nuestros Servicios
         </span>
-        <h2 className="heading-lg">Sonidos Exclusivos <span className="text-gradient">para tu Proyecto</span></h2>
+        <h2 className="heading-lg">Soluciones musicales <span className="text-gradient">profesionales</span></h2>
         <p className="text-urban-light/80 max-w-2xl mx-auto mt-4 text-lg">
           Ofrecemos servicios completos de producción musical para elevar tu presencia artística
         </p>
@@ -87,22 +85,22 @@ const ServicesSection = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <ServiceCard 
-          icon={<Music4 />}
-          title="Instrumental"
-          description="¿Buscas una instrumental única para tu tema de reggaetón, trap, bachata, pop, y más? ¡Lo creamos para ti! Cuéntanos tu idea, estilo y necesidades, y nosotros nos encargamos de producir una base musical completamente original."
+          icon={<Music4 size={48} />}
+          title="Instrumental Personalizada"
+          description="Creamos beats y melodías únicas adaptadas a tu estilo. Producción completa desde cero con revisiones incluidas."
           price="100"
           isPopular={true}
         />
         
         <ServiceCard 
-          icon={<Headphones />}
+          icon={<Headphones size={48} />}
           title="Mezcla y Master"
-          description="¿Quieres que tu tema suene impecable? Ofrecemos servicios de mezcla y masterización profesional para que tus voces e instrumentales suenen en su máximo potencial. Nos encargamos de ajustar cada elemento para lograr un sonido balanceado y de calidad profesional."
+          description="Procesamiento profesional de tus pistas para un sonido limpio, balanceado y listo para las plataformas digitales."
           price="100"
         />
         
         <ServiceCard 
-          icon={<Music3 />}
+          icon={<Music3 size={48} />}
           title="Composición Musical"
           description="Creación completa incluyendo arreglos, composición, letra y producción para una canción única y personalizada."
           price="150"
@@ -110,21 +108,21 @@ const ServicesSection = () => {
         />
         
         <ServiceCard 
-          icon={<Image />}
+          icon={<Image size={48} />}
           title="Portada para Spotify"
           description="Diseño de artwork personalizado con estética profesional para destacar tu música en todas las plataformas digitales."
           price="20"
         />
         
         <ServiceCard 
-          icon={<Video />}
+          icon={<Video size={48} />}
           title="Videos Lyrics"
           description="Visuales atractivos con tus letras sincronizadas a la música, perfectos para YouTube y aumentar el engagement."
           price="50"
         />
         
         <ServiceCard 
-          icon={<PlayCircle />}
+          icon={<PlayCircle size={48} />}
           title="Incluye tu tema en nuestra playlist"
           description="Inclusión en playlist con más de 1000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
           price="5"

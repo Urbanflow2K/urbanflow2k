@@ -84,8 +84,8 @@ const ServicesSection = () => {
         <ServiceCard 
           icon={<PlayCircle size={36} />}
           title="Campaña Playlist 15K"
-          description="Inclusión en playlist con más de 1000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
-          price="5"
+          description="Inclusión en playlist con más de 15.000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
+          price="15"
           isPopular={true}
         />
         

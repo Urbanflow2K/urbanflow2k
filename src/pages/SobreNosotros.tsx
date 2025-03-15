@@ -11,9 +11,20 @@ const SobreNosotros = () => {
       <Navbar />
       
       {/* Header de Página */}
-      <div className="pt-32 pb-20 px-4 bg-gradient-to-b from-urban-black to-urban-darkgray relative">
+      <div 
+        className="pt-32 pb-20 px-4 relative"
+        style={{
+          backgroundImage: 'url("/lovable-uploads/4376b5fe-449f-414f-bc9d-1d54d700a2c3.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Overlay para mejorar legibilidad del texto */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/60 backdrop-blur-sm"></div>
+        
         <div className="absolute top-1/3 left-1/4 w-72 h-72 rounded-full bg-urban-accent/5 blur-[100px] -z-10" />
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center relative z-10">
           <ScrollReveal>
             <span className="inline-block px-4 py-2 rounded-full text-sm bg-urban-accent/10 text-urban-accent font-medium mb-4">
               Sobre Nosotros

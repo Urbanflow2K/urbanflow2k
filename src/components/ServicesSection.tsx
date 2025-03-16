@@ -1,19 +1,9 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Music4, Headphones, Music3, Image, Video, PlayCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-// PayPal product IDs mapping
-const PAYPAL_PRODUCT_IDS = {
-  "Campaña Playlist 15K": "MBRP3BPP2SJMS",
-  "Instrumental": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
-  "Composición Musical": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
-  "Mezcla y Master": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
-  "Videos Lyrics": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
-  "Portada para Spotify": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
-};
 
 interface ServiceCardProps {
   icon: JSX.Element;
@@ -25,17 +15,18 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, description, price, isPopular = false }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const productId = PAYPAL_PRODUCT_IDS[title as keyof typeof PAYPAL_PRODUCT_IDS] || "MBRP3BPP2SJMS";
   
-  // Add PayPal cart button after component mounts
-  useEffect(() => {
-    // We need to make sure the cartPaypal object is available
-    if (window.cartPaypal) {
-      const buttonId = `add-to-cart-${title.replace(/\s+/g, '-').toLowerCase()}`;
-      window.cartPaypal.AddToCart({ id: buttonId });
-    }
-  }, [title]);
-
+  const handlePayPalPayment = () => {
+    // Format price for PayPal (remove any non-numeric characters and ensure it's a number)
+    const formattedPrice = price.replace(/[^\d.-]/g, '');
+    
+    // Create PayPal URL with the service name and price
+    const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=realmusicprod@hotmail.com&item_name=${encodeURIComponent(title)}&amount=${formattedPrice}&currency_code=EUR`;
+    
+    // Open PayPal in a new window
+    window.open(paypalUrl, '_blank');
+  };
+  
   return (
     <div 
       className={cn(
@@ -72,7 +63,8 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
         <span className="text-urban-light/70 ml-1">EUR</span>
       </div>
       
-      <div 
+      <Button 
+        onClick={handlePayPalPayment}
         className={cn(
           "w-full py-3 px-6 rounded-full smooth-transition flex items-center justify-center",
           isHovered 
@@ -80,23 +72,13 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
             : "bg-transparent border border-purple-500 text-purple-400"
         )}
       >
-        <paypal-add-to-cart-button 
-          data-id={`add-to-cart-${title.replace(/\s+/g, '-').toLowerCase()}`}
-        ></paypal-add-to-cart-button>
-      </div>
+        Comprar con PayPal
+      </Button>
     </div>
   );
 };
 
 const ServicesSection = () => {
-  // Add View Cart button after component mounts
-  useEffect(() => {
-    // Make sure the cartPaypal object is available
-    if (window.cartPaypal) {
-      window.cartPaypal.Cart({ id: "pp-view-cart" });
-    }
-  }, []);
-
   return (
     <section className="section relative font-elegant" id="servicios">
       {/* Elemento decorativo */}
@@ -108,13 +90,6 @@ const ServicesSection = () => {
           Nuestros Servicios
         </span>
         <h2 className="heading-lg">Sonidos Exclusivos para tu Proyecto</h2>
-      </div>
-      
-      {/* PayPal View Cart Button in a visible area */}
-      <div className="flex justify-center mb-8">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-500 p-1 rounded-full">
-          <paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
-        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -173,15 +148,5 @@ const ServicesSection = () => {
     </section>
   );
 };
-
-// Add TypeScript declaration for window.cartPaypal
-declare global {
-  interface Window {
-    cartPaypal: {
-      AddToCart: (options: { id: string }) => void;
-      Cart: (options: { id: string }) => void;
-    };
-  }
-}
 
 export default ServicesSection;

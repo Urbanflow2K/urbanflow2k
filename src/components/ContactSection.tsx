@@ -140,7 +140,7 @@ const ContactSection = () => {
             
             <div className="mt-12">
               <h4 className="text-xl font-semibold mb-4">Horario de Atención</h4>
-              <p className="text-urban-light/80">Lunes - Viernes: 9:00 - 20:00</p>
+              <p className="text-urban-light/80">Lunes - Viernes: 10:00 - 14:00 y 17:00 - 20:00</p>
             </div>
           </div>
         </div>

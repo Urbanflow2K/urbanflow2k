@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import { Music4, Headphones, Music3, Image, Video, PlayCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogTrigger 
+} from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
 
 interface ServiceCardProps {
   icon: JSX.Element;
@@ -15,6 +23,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, description, price, isPopular = false }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const handlePayPalPayment = () => {
     // Format price for PayPal (remove any non-numeric characters and ensure it's a number)
@@ -25,6 +34,19 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
     
     // Open PayPal in a new window
     window.open(paypalUrl, '_blank');
+    // Close the dialog after selection
+    setIsDialogOpen(false);
+  };
+  
+  const handleBizumPayment = () => {
+    // Create message for Bizum payment
+    const message = `Quiero hacer un pago de ${price} EUR por el servicio "${title}" con Bizum al número 622 17 43 67`;
+    
+    // Display an alert with instructions
+    alert(message);
+    
+    // Close the dialog after selection
+    setIsDialogOpen(false);
   };
   
   return (
@@ -63,17 +85,49 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
         <span className="text-urban-light/70 ml-1">EUR</span>
       </div>
       
-      <Button 
-        onClick={handlePayPalPayment}
-        className={cn(
-          "w-full py-3 px-6 rounded-full smooth-transition flex items-center justify-center",
-          isHovered 
-            ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
-            : "bg-transparent border border-purple-500 text-purple-400"
-        )}
-      >
-        Comprar con PayPal
-      </Button>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogTrigger asChild>
+          <Button 
+            className={cn(
+              "w-full py-3 px-6 rounded-full smooth-transition flex items-center justify-center",
+              isHovered 
+                ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
+                : "bg-transparent border border-purple-500 text-purple-400"
+            )}
+          >
+            Comprar
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px] bg-black/90 border border-purple-500/30 backdrop-blur-lg text-white">
+          <DialogHeader>
+            <DialogTitle className="text-center text-xl">Selecciona tu método de pago</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-6 py-4">
+            <div className="text-center mb-2">
+              <span className="text-lg font-semibold">{title}</span>
+              <div className="flex items-center justify-center">
+                <span className="text-2xl font-bold">{price}</span>
+                <span className="text-white/70 ml-1">EUR</span>
+              </div>
+            </div>
+            <Separator className="bg-purple-500/20" />
+            <div className="flex flex-col gap-4">
+              <Button 
+                onClick={handlePayPalPayment}
+                className="py-6 bg-[#0070ba] hover:bg-[#003087] text-white"
+              >
+                Pagar con PayPal
+              </Button>
+              <Button 
+                onClick={handleBizumPayment}
+                className="py-6 bg-[#14b8eb] hover:bg-[#0e9ac5] text-white"
+              >
+                Pagar con Bizum (622 17 43 67)
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

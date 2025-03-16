@@ -1,17 +1,19 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Music4, Headphones, Music3, Image, Video, PlayCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
-} from "@/components/ui/dialog";
-import { Separator } from "@/components/ui/separator";
+
+// PayPal product IDs mapping
+const PAYPAL_PRODUCT_IDS = {
+  "Campaña Playlist 15K": "MBRP3BPP2SJMS",
+  "Instrumental": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
+  "Composición Musical": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
+  "Mezcla y Master": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
+  "Videos Lyrics": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
+  "Portada para Spotify": "MBRP3BPP2SJMS", // You'll need to replace with the actual product ID
+};
 
 interface ServiceCardProps {
   icon: JSX.Element;
@@ -23,32 +25,17 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, description, price, isPopular = false }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const productId = PAYPAL_PRODUCT_IDS[title as keyof typeof PAYPAL_PRODUCT_IDS] || "MBRP3BPP2SJMS";
   
-  const handlePayPalPayment = () => {
-    // Format price for PayPal (remove any non-numeric characters and ensure it's a number)
-    const formattedPrice = price.replace(/[^\d.-]/g, '');
-    
-    // Create PayPal URL with the service name and price
-    const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=realmusicprod@hotmail.com&item_name=${encodeURIComponent(title)}&amount=${formattedPrice}&currency_code=EUR`;
-    
-    // Open PayPal in a new window
-    window.open(paypalUrl, '_blank');
-    // Close the dialog after selection
-    setIsDialogOpen(false);
-  };
-  
-  const handleBizumPayment = () => {
-    // Create message for Bizum payment
-    const message = `Quiero hacer un pago de ${price} EUR por el servicio "${title}" con Bizum al número 622 17 43 67`;
-    
-    // Display an alert with instructions
-    alert(message);
-    
-    // Close the dialog after selection
-    setIsDialogOpen(false);
-  };
-  
+  // Add PayPal cart button after component mounts
+  useEffect(() => {
+    // We need to make sure the cartPaypal object is available
+    if (window.cartPaypal) {
+      const buttonId = `add-to-cart-${title.replace(/\s+/g, '-').toLowerCase()}`;
+      window.cartPaypal.AddToCart({ id: buttonId });
+    }
+  }, [title]);
+
   return (
     <div 
       className={cn(
@@ -85,54 +72,31 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
         <span className="text-urban-light/70 ml-1">EUR</span>
       </div>
       
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogTrigger asChild>
-          <Button 
-            className={cn(
-              "w-full py-3 px-6 rounded-full smooth-transition flex items-center justify-center",
-              isHovered 
-                ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
-                : "bg-transparent border border-purple-500 text-purple-400"
-            )}
-          >
-            Comprar
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px] bg-black/90 border border-purple-500/30 backdrop-blur-lg text-white">
-          <DialogHeader>
-            <DialogTitle className="text-center text-xl">Selecciona tu método de pago</DialogTitle>
-          </DialogHeader>
-          <div className="grid gap-6 py-4">
-            <div className="text-center mb-2">
-              <span className="text-lg font-semibold">{title}</span>
-              <div className="flex items-center justify-center">
-                <span className="text-2xl font-bold">{price}</span>
-                <span className="text-white/70 ml-1">EUR</span>
-              </div>
-            </div>
-            <Separator className="bg-purple-500/20" />
-            <div className="flex flex-col gap-4">
-              <Button 
-                onClick={handlePayPalPayment}
-                className="py-6 bg-[#0070ba] hover:bg-[#003087] text-white"
-              >
-                Pagar con PayPal
-              </Button>
-              <Button 
-                onClick={handleBizumPayment}
-                className="py-6 bg-[#14b8eb] hover:bg-[#0e9ac5] text-white"
-              >
-                Pagar con Bizum (622 17 43 67)
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <div 
+        className={cn(
+          "w-full py-3 px-6 rounded-full smooth-transition flex items-center justify-center",
+          isHovered 
+            ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
+            : "bg-transparent border border-purple-500 text-purple-400"
+        )}
+      >
+        <paypal-add-to-cart-button 
+          data-id={`add-to-cart-${title.replace(/\s+/g, '-').toLowerCase()}`}
+        ></paypal-add-to-cart-button>
+      </div>
     </div>
   );
 };
 
 const ServicesSection = () => {
+  // Add View Cart button after component mounts
+  useEffect(() => {
+    // Make sure the cartPaypal object is available
+    if (window.cartPaypal) {
+      window.cartPaypal.Cart({ id: "pp-view-cart" });
+    }
+  }, []);
+
   return (
     <section className="section relative font-elegant" id="servicios">
       {/* Elemento decorativo */}
@@ -144,6 +108,13 @@ const ServicesSection = () => {
           Nuestros Servicios
         </span>
         <h2 className="heading-lg">Sonidos Exclusivos para tu Proyecto</h2>
+      </div>
+      
+      {/* PayPal View Cart Button in a visible area */}
+      <div className="flex justify-center mb-8">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-500 p-1 rounded-full">
+          <paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -202,5 +173,15 @@ const ServicesSection = () => {
     </section>
   );
 };
+
+// Add TypeScript declaration for window.cartPaypal
+declare global {
+  interface Window {
+    cartPaypal: {
+      AddToCart: (options: { id: string }) => void;
+      Cart: (options: { id: string }) => void;
+    };
+  }
+}
 
 export default ServicesSection;

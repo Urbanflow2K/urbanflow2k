@@ -116,10 +116,12 @@ const ContactSection = () => {
             
             <div className="space-y-6">
               <div className="flex items-center">
-                <Phone className="text-urban-accent mr-4" size={24} />
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-600 mr-4">
+                  <Phone className="text-white" size={20} />
+                </div>
                 <div>
-                  <p className="text-sm text-urban-light/70">Teléfono</p>
-                  <a href="tel:622174367" className="text-lg hover:text-urban-accent smooth-transition">
+                  <p className="text-sm text-urban-light/70">WhatsApp</p>
+                  <a href="https://wa.me/34622174367" className="text-lg hover:text-green-500 smooth-transition">
                     622 17 43 67
                   </a>
                 </div>

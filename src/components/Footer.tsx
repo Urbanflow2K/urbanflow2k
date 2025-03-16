@@ -63,9 +63,11 @@ const Footer = () => {
             <ul className="space-y-4">
               <li>
                 <div className="flex items-center">
-                  <Phone className="text-urban-accent mr-3" size={18} />
-                  <a href="tel:622174367" className="text-urban-light/70 hover:text-urban-accent smooth-transition">
-                    622 17 43 67
+                  <div className="flex items-center justify-center w-7 h-7 rounded-full bg-green-600 mr-3">
+                    <Phone className="text-white" size={14} />
+                  </div>
+                  <a href="https://wa.me/34622174367" className="text-urban-light/70 hover:text-green-500 smooth-transition">
+                    WhatsApp: 622 17 43 67
                   </a>
                 </div>
               </li>

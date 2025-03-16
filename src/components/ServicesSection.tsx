@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Music4, Headphones, Music3, Image, Video, PlayCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 interface ServiceCardProps {
   icon: JSX.Element;
@@ -15,17 +14,6 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, description, price, isPopular = false }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  
-  const handlePayPalPayment = () => {
-    // Format price for PayPal (remove any non-numeric characters and ensure it's a number)
-    const formattedPrice = price.replace(/[^\d.-]/g, '');
-    
-    // Create PayPal URL with the service name and price
-    const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=realmusicprod@hotmail.com&item_name=${encodeURIComponent(title)}&amount=${formattedPrice}&currency_code=EUR`;
-    
-    // Open PayPal in a new window
-    window.open(paypalUrl, '_blank');
-  };
   
   return (
     <div 
@@ -63,17 +51,17 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
         <span className="text-urban-light/70 ml-1">EUR</span>
       </div>
       
-      <Button 
-        onClick={handlePayPalPayment}
+      <Link 
+        to="/contacto" 
         className={cn(
-          "w-full py-3 px-6 rounded-full smooth-transition flex items-center justify-center",
+          "block text-center py-3 px-6 rounded-full smooth-transition",
           isHovered 
             ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
             : "bg-transparent border border-purple-500 text-purple-400"
         )}
       >
-        Comprar con PayPal
-      </Button>
+        Comprar
+      </Link>
     </div>
   );
 };

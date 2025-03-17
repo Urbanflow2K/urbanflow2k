@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Music4, Headphones, Music3, Image, Video, PlayCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface ServiceCardProps {
   icon: JSX.Element;
@@ -13,6 +14,9 @@ interface ServiceCardProps {
   isPlaylistCampaign?: boolean;
   isInstrumental?: boolean;
   isMixMaster?: boolean;
+  isComposition?: boolean;
+  isVideoLyrics?: boolean;
+  isSpotifyCover?: boolean;
 }
 
 const ServiceCard = ({ 
@@ -23,17 +27,12 @@ const ServiceCard = ({
   isPopular = false, 
   isPlaylistCampaign = false,
   isInstrumental = false,
-  isMixMaster = false
+  isMixMaster = false,
+  isComposition = false,
+  isVideoLyrics = false,
+  isSpotifyCover = false
 }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showPayPalButton, setShowPayPalButton] = useState(false);
-  
-  const handleComprarClick = (e: React.MouseEvent) => {
-    if (isPlaylistCampaign || isInstrumental || isMixMaster) {
-      e.preventDefault();
-      setShowPayPalButton(true);
-    }
-  };
   
   return (
     <div 
@@ -71,7 +70,91 @@ const ServiceCard = ({
         <span className="text-urban-light/70 ml-1">EUR</span>
       </div>
       
-      {!showPayPalButton ? (
+      {isPlaylistCampaign || isInstrumental || isMixMaster || isComposition || isVideoLyrics || isSpotifyCover ? (
+        <Popover>
+          <PopoverTrigger asChild>
+            <button 
+              className={cn(
+                "w-full text-center py-3 px-6 rounded-full smooth-transition",
+                isHovered 
+                  ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
+                  : "bg-transparent border border-purple-500 text-purple-400"
+              )}
+            >
+              Comprar
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0 bg-black/95 border border-purple-500/30 backdrop-blur-md">
+            <div className="p-4">
+              <h4 className="text-lg font-bold mb-2 text-purple-400">Opciones de pago</h4>
+              
+              {isPlaylistCampaign && (
+                <>
+                  <style dangerouslySetInnerHTML={{ __html: `.pp-3FL6A79J6SN72{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+                  <form action="https://www.paypal.com/ncp/payment/3FL6A79J6SN72" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                    <input className="pp-3FL6A79J6SN72" type="submit" value="Pagar ahora" />
+                    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                    <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+                  </form>
+                </>
+              )}
+
+              {(isInstrumental || isMixMaster) && (
+                <>
+                  <style dangerouslySetInnerHTML={{ __html: `.pp-Q5N5NUSNU69AU{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+                  <form action="https://www.paypal.com/ncp/payment/Q5N5NUSNU69AU" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                    <input className="pp-Q5N5NUSNU69AU" type="submit" value="Pagar ahora" />
+                    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                    <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+                  </form>
+                </>
+              )}
+              
+              {isComposition && (
+                <>
+                  <style dangerouslySetInnerHTML={{ __html: `.pp-GJBKDUZ9WHCT2{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+                  <form action="https://www.paypal.com/ncp/payment/GJBKDUZ9WHCT2" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                    <input className="pp-GJBKDUZ9WHCT2" type="submit" value="Pagar ahora" />
+                    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                    <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+                  </form>
+                </>
+              )}
+              
+              {isVideoLyrics && (
+                <>
+                  <style dangerouslySetInnerHTML={{ __html: `.pp-S9EGMJ5KDDYHW{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+                  <form action="https://www.paypal.com/ncp/payment/S9EGMJ5KDDYHW" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                    <input className="pp-S9EGMJ5KDDYHW" type="submit" value="Pagar ahora" />
+                    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                    <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+                  </form>
+                </>
+              )}
+              
+              {isSpotifyCover && (
+                <>
+                  <style dangerouslySetInnerHTML={{ __html: `.pp-CX6UJRMQATL26{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+                  <form action="https://www.paypal.com/ncp/payment/CX6UJRMQATL26" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                    <input className="pp-CX6UJRMQATL26" type="submit" value="Pagar ahora" />
+                    <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                    <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+                  </form>
+                </>
+              )}
+              
+              <div className="mt-2 text-center">
+                <Link 
+                  to="/contacto" 
+                  className="text-sm text-purple-400 hover:text-purple-300 smooth-transition"
+                >
+                  Contactar para más información
+                </Link>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
+      ) : (
         <Link 
           to="/contacto" 
           className={cn(
@@ -80,34 +163,9 @@ const ServiceCard = ({
               ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
               : "bg-transparent border border-purple-500 text-purple-400"
           )}
-          onClick={handleComprarClick}
         >
           Comprar
         </Link>
-      ) : (
-        <div className="mt-4">
-          {isPlaylistCampaign && (
-            <>
-              <style dangerouslySetInnerHTML={{ __html: `.pp-3FL6A79J6SN72{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
-              <form action="https://www.paypal.com/ncp/payment/3FL6A79J6SN72" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
-                <input className="pp-3FL6A79J6SN72" type="submit" value="Pagar ahora" />
-                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
-                <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
-              </form>
-            </>
-          )}
-
-          {(isInstrumental || isMixMaster) && (
-            <>
-              <style dangerouslySetInnerHTML={{ __html: `.pp-Q5N5NUSNU69AU{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
-              <form action="https://www.paypal.com/ncp/payment/Q5N5NUSNU69AU" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
-                <input className="pp-Q5N5NUSNU69AU" type="submit" value="Pagar ahora" />
-                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
-                <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
-              </form>
-            </>
-          )}
-        </div>
       )}
     </div>
   );
@@ -152,6 +210,7 @@ const ServicesSection = () => {
           description="Creación completa incluyendo arreglos, composición, letra y producción para una canción única y personalizada."
           price="150"
           isPopular={true}
+          isComposition={true}
         />
         
         <ServiceCard 
@@ -167,6 +226,7 @@ const ServicesSection = () => {
           title="Videos Lyrics"
           description="Visuales atractivos con tus letras sincronizadas a la música, perfectos para YouTube y aumentar el engagement."
           price="50"
+          isVideoLyrics={true}
         />
         
         <ServiceCard 
@@ -174,6 +234,7 @@ const ServicesSection = () => {
           title="Portada para Spotify"
           description="Diseño de artwork personalizado con estética profesional para destacar tu música en todas las plataformas digitales."
           price="20"
+          isSpotifyCover={true}
         />
       </div>
       

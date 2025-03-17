@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Servicios from "./pages/Servicios";
 import SobreNosotros from "./pages/SobreNosotros";
 import Contacto from "./pages/Contacto";
+import Carrito from "./pages/Carrito";
 import NotFound from "./pages/NotFound";
 
 // Components
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/servicios" element={<Servicios />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/carrito" element={<Carrito />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

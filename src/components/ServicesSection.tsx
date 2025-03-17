@@ -11,14 +11,25 @@ interface ServiceCardProps {
   price: string;
   isPopular?: boolean;
   isPlaylistCampaign?: boolean;
+  isInstrumental?: boolean;
+  isMixMaster?: boolean;
 }
 
-const ServiceCard = ({ icon, title, description, price, isPopular = false, isPlaylistCampaign = false }: ServiceCardProps) => {
+const ServiceCard = ({ 
+  icon, 
+  title, 
+  description, 
+  price, 
+  isPopular = false, 
+  isPlaylistCampaign = false,
+  isInstrumental = false,
+  isMixMaster = false
+}: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showPayPalButton, setShowPayPalButton] = useState(false);
   
   const handleComprarClick = (e: React.MouseEvent) => {
-    if (isPlaylistCampaign) {
+    if (isPlaylistCampaign || isInstrumental || isMixMaster) {
       e.preventDefault();
       setShowPayPalButton(true);
     }
@@ -75,12 +86,27 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false, isPla
         </Link>
       ) : (
         <div className="mt-4">
-          <style dangerouslySetInnerHTML={{ __html: `.pp-3FL6A79J6SN72{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
-          <form action="https://www.paypal.com/ncp/payment/3FL6A79J6SN72" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
-            <input className="pp-3FL6A79J6SN72" type="submit" value="Pagar ahora" />
-            <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
-            <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
-          </form>
+          {isPlaylistCampaign && (
+            <>
+              <style dangerouslySetInnerHTML={{ __html: `.pp-3FL6A79J6SN72{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+              <form action="https://www.paypal.com/ncp/payment/3FL6A79J6SN72" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                <input className="pp-3FL6A79J6SN72" type="submit" value="Pagar ahora" />
+                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+              </form>
+            </>
+          )}
+
+          {(isInstrumental || isMixMaster) && (
+            <>
+              <style dangerouslySetInnerHTML={{ __html: `.pp-Q5N5NUSNU69AU{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+              <form action="https://www.paypal.com/ncp/payment/Q5N5NUSNU69AU" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+                <input className="pp-Q5N5NUSNU69AU" type="submit" value="Pagar ahora" />
+                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+              </form>
+            </>
+          )}
         </div>
       )}
     </div>
@@ -117,6 +143,7 @@ const ServicesSection = () => {
           description="Creamos beats y melodías únicas adaptadas a tu estilo. Dinos cómo lo quieres y lo hacemos realidad desde cero."
           price="100"
           isPopular={true}
+          isInstrumental={true}
         />
         
         <ServiceCard 
@@ -132,6 +159,7 @@ const ServicesSection = () => {
           title="Mezcla y Master"
           description="Mezcla y master de voces según tu visión."
           price="100"
+          isMixMaster={true}
         />
         
         <ServiceCard 

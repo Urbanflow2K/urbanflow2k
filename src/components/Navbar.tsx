@@ -1,13 +1,12 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Music, ShoppingCart } from "lucide-react";
+import { Menu, X, Music } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
 
   // Detectar cuando el usuario hace scroll
   useEffect(() => {
@@ -22,28 +21,6 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Update cart count when localStorage changes
-  useEffect(() => {
-    const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem('shoppingCart') || '[]');
-      setCartCount(cart.length);
-    };
-
-    // Initial count
-    updateCartCount();
-
-    // Listen for storage events to update cart count
-    window.addEventListener('storage', updateCartCount);
-    
-    // Custom event for when we update cart from within the app
-    window.addEventListener('cartUpdated', updateCartCount);
-    
-    return () => {
-      window.removeEventListener('storage', updateCartCount);
-      window.removeEventListener('cartUpdated', updateCartCount);
     };
   }, []);
 
@@ -78,31 +55,13 @@ const Navbar = () => {
             <Link to="/sobre-nosotros" className="nav-link text-urban-white opacity-90 hover:opacity-100 font-medium smooth-transition">
               Sobre Nosotros
             </Link>
-            <div className="flex items-center space-x-4">
-              <Link to="/contacto" className="btn-primary">
-                Contactar
-              </Link>
-              <Link to="/carrito" className="relative p-2 text-urban-white hover:text-urban-accent smooth-transition">
-                <ShoppingCart size={24} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-urban-accent text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-            </div>
+            <Link to="/contacto" className="btn-primary">
+              Contactar
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <Link to="/carrito" className="relative p-2 text-urban-white hover:text-urban-accent smooth-transition">
-              <ShoppingCart size={24} />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-urban-accent text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
+          <div className="md:hidden">
             <button
               className="text-white hover:text-urban-accent smooth-transition p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}

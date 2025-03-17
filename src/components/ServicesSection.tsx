@@ -10,10 +10,19 @@ interface ServiceCardProps {
   description: string;
   price: string;
   isPopular?: boolean;
+  isPlaylistCampaign?: boolean;
 }
 
-const ServiceCard = ({ icon, title, description, price, isPopular = false }: ServiceCardProps) => {
+const ServiceCard = ({ icon, title, description, price, isPopular = false, isPlaylistCampaign = false }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showPayPalButton, setShowPayPalButton] = useState(false);
+  
+  const handleComprarClick = (e: React.MouseEvent) => {
+    if (isPlaylistCampaign) {
+      e.preventDefault();
+      setShowPayPalButton(true);
+    }
+  };
   
   return (
     <div 
@@ -51,17 +60,29 @@ const ServiceCard = ({ icon, title, description, price, isPopular = false }: Ser
         <span className="text-urban-light/70 ml-1">EUR</span>
       </div>
       
-      <Link 
-        to="/contacto" 
-        className={cn(
-          "block text-center py-3 px-6 rounded-full smooth-transition",
-          isHovered 
-            ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
-            : "bg-transparent border border-purple-500 text-purple-400"
-        )}
-      >
-        Comprar
-      </Link>
+      {!showPayPalButton ? (
+        <Link 
+          to="/contacto" 
+          className={cn(
+            "block text-center py-3 px-6 rounded-full smooth-transition",
+            isHovered 
+              ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white" 
+              : "bg-transparent border border-purple-500 text-purple-400"
+          )}
+          onClick={handleComprarClick}
+        >
+          Comprar
+        </Link>
+      ) : (
+        <div className="mt-4">
+          <style dangerouslySetInnerHTML={{ __html: `.pp-3FL6A79J6SN72{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}` }} />
+          <form action="https://www.paypal.com/ncp/payment/3FL6A79J6SN72" method="post" target="_blank" style={{ display: 'inline-grid', justifyItems: 'center', alignContent: 'start', gap: '0.5rem', width: '100%' }}>
+            <input className="pp-3FL6A79J6SN72" type="submit" value="Pagar ahora" />
+            <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+            <section style={{ fontSize: '0.8rem' }}> Tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style={{ height: '0.875rem', verticalAlign: 'middle' }}/></section>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
@@ -87,6 +108,7 @@ const ServicesSection = () => {
           description="Inclusión en playlist con más de 15.000 seguidores para aumentar tu visibilidad y reproducciones en Spotify."
           price="15"
           isPopular={true}
+          isPlaylistCampaign={true}
         />
         
         <ServiceCard 
